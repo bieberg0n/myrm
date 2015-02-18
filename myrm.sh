@@ -1,0 +1,24 @@
+myrm() {
+	case $# in
+		0)
+			rm -r
+			;;
+		*)
+			args=($@)
+			dir=${args[@]:0:$#}
+			#echo -e "$args"
+			#echo -e "$dir"
+			#echo done
+			read -a a -p "是否删除目录:$dir ? [y/n]:"
+			if [[ $a == 'y' || $a == 'Y' ]];then
+				#echo $a
+				yes|rm -r $dir
+			else
+				echo '操作取消'
+			fi
+			#echo $a
+			;;
+	esac
+}
+
+myrm "$@"
